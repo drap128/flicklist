@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name=viewport content="width=device-width, initial-scale=1">
+<!-- Latest compiled and minified CSS -->
 
   <script src="https://code.jquery.com/jquery-2.2.3.js"></script>  
 
@@ -10,7 +11,14 @@
   TODO add bootstrap js script
   -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+    crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/styles.css"/>
 
   <title>FlickList</title>
@@ -26,7 +34,7 @@
 
   <div class="main-content">
 
-    <section id="section-watchlist" class="col-md-5">
+    <section id="section-watchlist">
       <header>
         <h2>My Watchlist</h2>
         <hr/>
@@ -35,30 +43,57 @@
       <ul class="list-inline"></ul>
     </section>
 
-    <section id="section-browse" class="col-md-7">
+    <section id="section-browse" class="container-fluid">
+      <div class="row">
+        <!-- TODO
+        Rearrange the layout of this section using the Bootstrap grid system to match the specification 
+        -->
+        <div class="col-sm-8">
+          <!-- 
+          TODO
+          implement a carousel inside this section
+          You can incorporate this <ul> as the .carousel-inner 
+          -->
+          <div class="well">
+            <div class="row">
+              <div class="col-sm-7" id="browse-info">
+                <h4></h4>
+                <hr/>
+                <p></p>
+              </div>
+              <div class="col-sm-5">
+                <div class="carousel slide" id="browse-carousel" data-ride="carousel">
 
-      <!-- TODO
-      Rearrange the layout of this section using the Bootstrap grid system to match the specification 
-      -->
-
-      <header>
-        <h2>Browse Movies</h2>
-      </header>
-      <form id="form-search">
-        <div class="input-group">
-          <input type="text" class="form-control" name="query"/>
-          <span class="input-group-btn">
-            <input type="submit" class="btn btn-primary" value="Search By Topic"/>
-          </span>
+                  <!-- Wrapper for slides -->
+                  <ul class="carousel-inner" role="listbox"></ul>
+              
+                  <!-- Left and right controls -->
+                  <a class="left carousel-control" href="#browse-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                  <a class="right carousel-control" href="#browse-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
+                </div>
+                <button id="add-to-watchlist">Add to Watchlist</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </form>
-
-      <!-- 
-      TODO
-      implement a carousel inside this section
-      You can incorporate this <ul> as the .carousel-inner 
-      -->
-      <ul class="list-group"></ul>
+        <div class="col-sm-4">
+          <header>
+            <h2>Browse Movies</h2>
+          </header>
+          <form id="form-search">
+            <div class="input-group">
+              <input type="text" class="form-control" name="query"/>
+              <span class="input-group-btn">
+                <input type="submit" class="btn btn-primary" value="Search By Topic"/>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
 
     </section>
 
@@ -77,6 +112,8 @@
       var newIndex = $("#browse-carousel").find(".active").index();
       // TODO 
       // update the model and then re-render
+      model.activeMovieIndex = newIndex;
+      render();
     });
   </script>
 
